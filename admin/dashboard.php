@@ -82,7 +82,7 @@ include __DIR__ . '/../partials/admin_header.php';
     <div class="card">
       <div class="card-body">
         <div class="page-title mb-2">Number of Books</div>
-        <canvas id="borrowsChart" height="110"></canvas>
+        <div class="chart-container"><canvas id="borrowsChart"></canvas></div>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@ include __DIR__ . '/../partials/admin_header.php';
     <div class="card">
       <div class="card-body">
         <div class="page-title mb-2">Transaction Status</div>
-        <canvas id="statusChart" height="110"></canvas>
+        <div class="chart-container"><canvas id="statusChart"></canvas></div>
       </div>
     </div>
   </div>
@@ -119,7 +119,9 @@ include __DIR__ . '/../partials/admin_header.php';
     },
     options: {
       responsive: true,
+      resizeDelay: 200,
       maintainAspectRatio: false,
+      animation: { duration: 0 },
       plugins: { legend: { display: false } },
       scales: { y: { beginAtZero: true } }
     }
@@ -137,7 +139,9 @@ include __DIR__ . '/../partials/admin_header.php';
     },
     options: {
       responsive: true,
+      resizeDelay: 200,
       maintainAspectRatio: false,
+      animation: { duration: 0 },
       plugins: { legend: { display: false } }
     }
   });

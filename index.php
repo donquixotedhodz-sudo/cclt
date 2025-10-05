@@ -102,7 +102,10 @@ include __DIR__ . '/partials/header.php';
           </div>
           <div class="mb-3">
             <label class="form-label required">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+            <div class="input-with-toggle position-relative">
+              <input type="password" name="password" class="form-control pe-5" placeholder="Enter password" required>
+              <button type="button" class="password-toggle btn btn-sm btn-link d-none" aria-label="Show password"><i class="bi bi-eye"></i></button>
+            </div>
           </div>
           <div class="d-flex gap-2">
             <button type="submit" class="btn btn-primary">Login</button>
@@ -149,11 +152,17 @@ include __DIR__ . '/partials/header.php';
             </div>
             <div class="col-md-6">
               <label class="form-label required">Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Create a password (min 6)" required>
+              <div class="input-with-toggle position-relative">
+                <input type="password" name="password" class="form-control pe-5" placeholder="Create a password (min 6)" required>
+                <button type="button" class="password-toggle btn btn-sm btn-link d-none" aria-label="Show password"><i class="bi bi-eye"></i></button>
+              </div>
             </div>
             <div class="col-md-6">
               <label class="form-label required">Confirm Password</label>
-              <input type="password" name="confirm_password" class="form-control" placeholder="Re-enter password" required>
+              <div class="input-with-toggle position-relative">
+                <input type="password" name="confirm_password" class="form-control pe-5" placeholder="Re-enter password" required>
+                <button type="button" class="password-toggle btn btn-sm btn-link d-none" aria-label="Show password"><i class="bi bi-eye"></i></button>
+              </div>
             </div>
           </div>
             <div class="mt-3 d-flex gap-2">
@@ -181,7 +190,10 @@ include __DIR__ . '/partials/header.php';
             </div>
             <div class="col-md-6">
               <label class="form-label required">Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+              <div class="input-with-toggle position-relative">
+                <input type="password" name="password" class="form-control pe-5" placeholder="Enter password" required>
+                <button type="button" class="password-toggle btn btn-sm btn-link d-none" aria-label="Show password"><i class="bi bi-eye"></i></button>
+              </div>
             </div>
           </div>
           <div class="mt-3 d-flex gap-2">

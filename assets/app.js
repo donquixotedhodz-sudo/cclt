@@ -59,6 +59,49 @@ const initApp = () => {
     loginPanel?.classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  // Show/hide password toggle icon appears when input has value
+  const setupPasswordToggles = () => {
+    const containers = document.querySelectorAll('.input-with-toggle');
+    containers.forEach(container => {
+      const input = container.querySelector('input[type="password"]');
+      const toggle = container.querySelector('.password-toggle');
+      if (!input || !toggle) return;
+
+      const updateVisibility = () => {
+        if (input.value && input.value.length > 0) {
+          toggle.classList.remove('d-none');
+        } else {
+          toggle.classList.add('d-none');
+          // Reset to hidden state when cleared
+          if (input.type === 'text') {
+            input.type = 'password';
+            const icon = toggle.querySelector('i');
+            if (icon) { icon.classList.remove('bi-eye-slash'); icon.classList.add('bi-eye'); }
+            toggle.setAttribute('aria-label', 'Show password');
+          }
+        }
+      };
+
+      input.addEventListener('input', updateVisibility);
+      updateVisibility();
+
+      toggle.addEventListener('click', () => {
+        const icon = toggle.querySelector('i');
+        if (input.type === 'password') {
+          input.type = 'text';
+          if (icon) { icon.classList.remove('bi-eye'); icon.classList.add('bi-eye-slash'); }
+          toggle.setAttribute('aria-label', 'Hide password');
+        } else {
+          input.type = 'password';
+          if (icon) { icon.classList.remove('bi-eye-slash'); icon.classList.add('bi-eye'); }
+          toggle.setAttribute('aria-label', 'Show password');
+        }
+      });
+    });
+  };
+
+  setupPasswordToggles();
 };
 
 if (document.readyState === 'loading') {

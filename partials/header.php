@@ -12,6 +12,7 @@ $loggedIn = isset($_SESSION['user']);
     <title>Clarendon College Library Tracker</title>
     <link rel="icon" type="image/png" sizes="32x32" href="<?=defined('ROOT_BASE')?ROOT_BASE:(defined('ASSET_BASE')?ASSET_BASE:APP_BASE)?>/image/ccclogo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="<?=defined('ASSET_BASE')?ASSET_BASE:APP_BASE?>/assets/style.css">
   </head>
   <body>
