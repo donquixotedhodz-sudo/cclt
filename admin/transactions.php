@@ -60,9 +60,9 @@ $booksAvail = pdo()->query('SELECT id, title, author, quantity FROM books ORDER 
 
 include __DIR__ . '/../partials/admin_header.php';
 ?>
-<div class="row g-4">
+<div class="row g-4 align-items-stretch">
   <div class="col-md-6">
-    <div class="card">
+    <div class="card h-100">
       <div class="card-body">
         <div class="page-title mb-2">Borrow a Book</div>
         <?php if ($message && ($action==='borrow' || $_SERVER['REQUEST_METHOD']==='POST')): ?>
@@ -107,7 +107,7 @@ include __DIR__ . '/../partials/admin_header.php';
   </div>
 
   <div class="col-md-6">
-    <div class="card">
+    <div class="card h-100">
       <div class="card-body">
         <div class="page-title mb-2">Return a Book</div>
         <div class="small text-muted mb-2">Use the table below to find borrowed books by borrower name, ID, or title and click Return.</div>
@@ -143,11 +143,18 @@ include __DIR__ . '/../partials/admin_header.php';
                   <td><?=htmlspecialchars($r['borrow_date'])?></td>
                   <td><?=htmlspecialchars($r['due_date'])?></td>
                   <td>
-                    <form method="post" class="d-inline">
-                      <input type="hidden" name="form" value="return">
-                      <input type="hidden" name="tx_id" value="<?=$r['id']?>">
-                      <button class="btn btn-sm btn-outline-success" type="submit">Return Book</button>
-                    </form>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                      <button class="btn btn-outline-secondary" type="button" title="Edit" aria-label="Edit">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <form method="post" class="d-inline">
+                        <input type="hidden" name="form" value="return">
+                        <input type="hidden" name="tx_id" value="<?=$r['id']?>">
+                        <button class="btn btn-outline-success" type="submit" title="Return" aria-label="Return">
+                          <i class="bi bi-arrow-return-left"></i>
+                        </button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -206,7 +213,7 @@ include __DIR__ . '/../partials/admin_header.php';
                   <td><?=htmlspecialchars($t['due_date'])?></td>
                   <td><?=htmlspecialchars($t['return_date'])?></td>
                   <td><?=$t['status']?></td>
-                  <td>$<?=number_format((float)$t['late_fee'],2)?></td>
+                  <td>₱<?=number_format((float)$t['late_fee'],2)?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

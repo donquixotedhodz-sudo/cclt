@@ -51,8 +51,11 @@ if (($_GET['print'] ?? '') === 'borrowed') {
       </head>
       <body data-auto-print="true">
         <div class="container mt-4">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="page-title">Borrowed Books</div>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-2">
+              <img src="<?=defined('ROOT_BASE')?ROOT_BASE:(defined('ASSET_BASE')?ASSET_BASE:APP_BASE)?>/image/ccclogo.png" alt="Clarendon College logo" width="40" height="40">
+              <div class="page-title mb-0">Clarendon College Library Tracker</div>
+            </div>
             <button class="btn btn-sm btn-outline-secondary no-print" onclick="window.print()">Print</button>
           </div>
           <div class="table-responsive">
@@ -74,6 +77,66 @@ if (($_GET['print'] ?? '') === 'borrowed') {
                     <td><?=htmlspecialchars($r['status'])?></td>
                     <td><?=htmlspecialchars($r['borrow_date'])?></td>
                     <td><?=htmlspecialchars($r['due_date'])?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="<?=defined('ASSET_BASE')?ASSET_BASE:APP_BASE?>/assets/app.js"></script>
+      </body>
+    </html>
+    <?php
+    exit;
+}
+
+// Print view for returned books
+if (($_GET['print'] ?? '') === 'returned') {
+    ?>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Print — Returned Books</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="<?=defined('ROOT_BASE')?ROOT_BASE:(defined('ASSET_BASE')?ASSET_BASE:APP_BASE)?>/image/ccclogo.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?=defined('ASSET_BASE')?ASSET_BASE:APP_BASE?>/assets/style.css">
+        <style>
+          @media print { .no-print { display:none !important; } }
+        </style>
+      </head>
+      <body data-auto-print="true">
+        <div class="container mt-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-2">
+              <img src="<?=defined('ROOT_BASE')?ROOT_BASE:(defined('ASSET_BASE')?ASSET_BASE:APP_BASE)?>/image/ccclogo.png" alt="Clarendon College logo" width="40" height="40">
+              <div class="page-title mb-0">Clarendon College Library Tracker</div>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary no-print" onclick="window.print()">Print</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Borrower</th>
+                  <th>Book</th>
+                  <th>Status</th>
+                  <th>Borrowed</th>
+                  <th>Returned</th>
+                  <th>Late Fee</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($returned as $r): ?>
+                  <tr>
+                    <td><?=htmlspecialchars($r['name'])?></td>
+                    <td><?=htmlspecialchars($r['title'])?></td>
+                    <td><?=htmlspecialchars($r['status'])?></td>
+                    <td><?=htmlspecialchars($r['borrow_date'])?></td>
+                    <td><?=htmlspecialchars($r['return_date'])?></td>
+                    <td>₱<?=number_format((float)$r['late_fee'],2)?></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -136,7 +199,10 @@ include __DIR__ . '/../partials/admin_header.php';
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <div class="page-title mb-2">Returned Books</div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div class="page-title mb-0">Returned Books</div>
+          <a class="btn btn-sm btn-outline-secondary" href="<?=APP_BASE?>/reports.php?print=returned" target="_blank">Print</a>
+        </div>
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -155,7 +221,7 @@ include __DIR__ . '/../partials/admin_header.php';
                   <td><?=htmlspecialchars($r['title'])?></td>
                   <td><?=htmlspecialchars($r['borrow_date'])?></td>
                   <td><?=htmlspecialchars($r['return_date'])?></td>
-                  <td>$<?=number_format((float)$r['late_fee'],2)?></td>
+                  <td>₱<?=number_format((float)$r['late_fee'],2)?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -222,7 +288,7 @@ include __DIR__ . '/../partials/admin_header.php';
                     <td><?=$r['status']?></td>
                     <td><?=htmlspecialchars($r['borrow_date'])?></td>
                     <td><?=htmlspecialchars($r['return_date'])?></td>
-                    <td>$<?=number_format((float)$r['late_fee'],2)?></td>
+                    <td>₱<?=number_format((float)$r['late_fee'],2)?></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>

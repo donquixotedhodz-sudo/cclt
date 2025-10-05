@@ -1,4 +1,15 @@
 const initApp = () => {
+  // Apply saved theme (light/dark) from localStorage
+  try {
+    const key = 'cclt_theme';
+    const current = localStorage.getItem(key);
+    if (current === 'dark') {
+      document.body.classList.add('theme-dark');
+    } else if (current === 'light') {
+      document.body.classList.remove('theme-dark');
+    }
+  } catch (_) {}
+
   // Confirm delete actions
   document.querySelectorAll('[data-confirm]')?.forEach(el => {
     el.addEventListener('click', (e) => {

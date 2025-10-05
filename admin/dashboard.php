@@ -81,7 +81,7 @@ include __DIR__ . '/../partials/admin_header.php';
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <div class="page-title mb-2">Number of Books</div>
+        <div class="page-title mb-2">Borrowed Books</div>
         <div class="chart-container"><canvas id="borrowsChart"></canvas></div>
       </div>
     </div>

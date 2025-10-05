@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $loggedIn = isset($_SESSION['user']);
+$currentPage = basename($_SERVER['PHP_SELF'] ?? '');
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,15 +24,16 @@ $loggedIn = isset($_SESSION['user']);
       </div>
       <ul class="nav flex-column">
         <?php if ($loggedIn): ?>
-          <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/dashboard.php"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/books.php"><i class="bi bi-book me-2"></i>Books</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/borrowers.php"><i class="bi bi-people me-2"></i>Borrowers</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/transactions.php"><i class="bi bi-arrow-left-right me-2"></i>Borrow/Return</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/reports.php"><i class="bi bi-graph-up me-2"></i>Reports</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/profile.php"><i class="bi bi-person me-2"></i>Profile</a></li>
+          <li class="nav-item"><a class="nav-link <?= $currentPage==='dashboard.php'?'active':'' ?>" <?= $currentPage==='dashboard.php'?'aria-current="page"':'' ?> href="<?=APP_BASE?>/dashboard.php"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link <?= $currentPage==='books.php'?'active':'' ?>" <?= $currentPage==='books.php'?'aria-current="page"':'' ?> href="<?=APP_BASE?>/books.php"><i class="bi bi-book me-2"></i>Books</a></li>
+          <li class="nav-item"><a class="nav-link <?= $currentPage==='borrowers.php'?'active':'' ?>" <?= $currentPage==='borrowers.php'?'aria-current="page"':'' ?> href="<?=APP_BASE?>/borrowers.php"><i class="bi bi-people me-2"></i>Borrowers</a></li>
+          <li class="nav-item"><a class="nav-link <?= $currentPage==='transactions.php'?'active':'' ?>" <?= $currentPage==='transactions.php'?'aria-current="page"':'' ?> href="<?=APP_BASE?>/transactions.php"><i class="bi bi-arrow-left-right me-2"></i>Borrow/Return</a></li>
+          <li class="nav-item"><a class="nav-link <?= $currentPage==='reports.php'?'active':'' ?>" <?= $currentPage==='reports.php'?'aria-current="page"':'' ?> href="<?=APP_BASE?>/reports.php"><i class="bi bi-graph-up me-2"></i>Reports</a></li>
+          <li class="nav-item"><a class="nav-link <?= $currentPage==='settings.php'?'active':'' ?>" <?= $currentPage==='settings.php'?'aria-current="page"':'' ?> href="<?=APP_BASE?>/settings.php"><i class="bi bi-gear me-2"></i>Settings</a></li>
+          <li class="nav-item"><a class="nav-link <?= $currentPage==='profile.php'?'active':'' ?>" <?= $currentPage==='profile.php'?'aria-current="page"':'' ?> href="<?=APP_BASE?>/profile.php"><i class="bi bi-person me-2"></i>Profile</a></li>
           <li class="nav-item mt-auto"><a class="nav-link" href="<?=APP_BASE?>/logout.php"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
         <?php else: ?>
-          <li class="nav-item"><a class="nav-link" href="<?=defined('ROOT_BASE')?ROOT_BASE:APP_BASE?>/index.php"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
+          <li class="nav-item"><a class="nav-link <?= $currentPage==='index.php'?'active':'' ?>" <?= $currentPage==='index.php'?'aria-current="page"':'' ?> href="<?=defined('ROOT_BASE')?ROOT_BASE:APP_BASE?>/index.php"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
         <?php endif; ?>
       </ul>
     </aside>
