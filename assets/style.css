@@ -1,0 +1,104 @@
+:root {
+  /* Clarendon College palette */
+  --navy: #0e2a47;        /* primary brand */
+  --navy-700: #0b223a;    /* darker hover */
+  --gold: #c7a64b;        /* accent */
+  --gold-700: #b18f35;    /* darker hover */
+  --cream: #f6f4ec;       /* subtle background */
+  --muted: #6c757d;       /* text-muted */
+
+  /* App theme mapping */
+  --primary: var(--navy);
+  --bg: var(--cream);
+  --text: #1f2a35;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 240px;
+  background: #fff;
+  border-right: 2px solid rgba(14,42,71,0.08);
+  padding: 16px;
+}
+.sidenav .brand { color: var(--navy); }
+.sidenav .nav-link {
+  color: var(--navy);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.sidenav .nav-link:hover,
+.sidenav .nav-link.active { background: rgba(199,166,75,0.15); color: var(--navy); }
+.content-with-sidenav { margin-left: 240px; padding-top: 2rem; }
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-top: 4px solid var(--gold);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover { background-color: var(--navy-700); border-color: var(--navy-700); }
+
+.btn-outline-primary {
+  color: var(--navy);
+  border-color: var(--navy);
+}
+.btn-outline-primary:hover { background-color: var(--navy); color: #fff; }
+
+.btn-outline-secondary {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.btn-outline-secondary:hover { background-color: var(--gold); color: #fff; }
+
+.table thead th {
+  background: rgba(199,166,75,0.15);
+  color: var(--navy);
+  border-bottom-color: rgba(14,42,71,0.2);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(14,42,71,0.03);
+}
+
+.footer {
+  padding: 20px 0;
+  color: var(--muted);
+  background: #fff;
+  border-top: 2px solid rgba(14,42,71,0.08);
+}
+
+.form-control::placeholder {
+  color: #adb5bd;
+}
+
+.page-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.nav-link.active {
+  font-weight: 600;
+}
+
+.required::after {
+  content: " *";
+  color: #dc3545;
+}
