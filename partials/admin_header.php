@@ -28,6 +28,7 @@ $loggedIn = isset($_SESSION['user']);
           <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/borrowers.php"><i class="bi bi-people me-2"></i>Borrowers</a></li>
           <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/transactions.php"><i class="bi bi-arrow-left-right me-2"></i>Borrow/Return</a></li>
           <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/reports.php"><i class="bi bi-graph-up me-2"></i>Reports</a></li>
+          <li class="nav-item"><a class="nav-link" href="<?=APP_BASE?>/profile.php"><i class="bi bi-person me-2"></i>Profile</a></li>
           <li class="nav-item mt-auto"><a class="nav-link" href="<?=APP_BASE?>/logout.php"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
         <?php else: ?>
           <li class="nav-item"><a class="nav-link" href="<?=defined('ROOT_BASE')?ROOT_BASE:APP_BASE?>/index.php"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>

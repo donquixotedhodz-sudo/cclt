@@ -118,7 +118,7 @@ include __DIR__ . '/../partials/admin_header.php';
       }]
     },
     options: {
-      responsive: false,
+      responsive: true,
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: { y: { beginAtZero: true } }
@@ -136,7 +136,7 @@ include __DIR__ . '/../partials/admin_header.php';
       }]
     },
     options: {
-      responsive: false,
+      responsive: true,
       maintainAspectRatio: false,
       plugins: { legend: { display: false } }
     }

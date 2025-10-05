@@ -102,3 +102,18 @@ body {
   content: " *";
   color: #dc3545;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidenav {
+    position: static;
+    height: auto;
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid rgba(14,42,71,0.08);
+  }
+  .content-with-sidenav {
+    margin-left: 0;
+    padding-top: 1rem;
+  }
+}
