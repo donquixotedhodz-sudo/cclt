@@ -42,10 +42,21 @@ CREATE TABLE IF NOT EXISTS borrowers (
   name VARCHAR(255) NOT NULL,
   borrower_id VARCHAR(100) UNIQUE NOT NULL,
   contact VARCHAR(255),
+  password_hash VARCHAR(255) NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 SQL);
+
+    // Ensure password_hash column exists (for existing installations)
+    try {
+        $col = $pdo->query("SHOW COLUMNS FROM borrowers LIKE 'password_hash'")->fetch();
+        if (!$col) {
+            $pdo->exec("ALTER TABLE borrowers ADD COLUMN password_hash VARCHAR(255) NULL AFTER contact");
+        }
+    } catch (Throwable $e) {
+        // ignore
+    }
 
     $pdo->exec(<<<SQL
 CREATE TABLE IF NOT EXISTS transactions (

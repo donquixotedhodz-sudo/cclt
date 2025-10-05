@@ -34,31 +34,28 @@ include __DIR__ . '/../partials/header.php';
         <div class="page-title mb-2">Borrower Dashboard</div>
         <p class="text-muted small">View your borrowing history using your Borrower ID.</p>
 
-        <form class="row g-3 mb-3" method="get" autocomplete="off">
-          <div class="col-md-4">
-            <label class="form-label required">Borrower ID</label>
-            <input type="text" name="borrower_id" class="form-control" placeholder="Enter your Borrower ID" value="<?=htmlspecialchars($codeParam)?>" required>
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between mb-3">
+          <div class="mb-2 mb-md-0">
+            <?php if ($borrower): ?>
+              <div class="d-flex flex-wrap gap-3">
+                <span><strong>Name:</strong> <?=htmlspecialchars($borrower['name'])?></span>
+                <span><strong>Borrower ID:</strong> <?=htmlspecialchars($borrower['borrower_id'])?></span>
+                <?php if (!empty($borrower['contact'])): ?>
+                  <span><strong>Contact:</strong> <?=htmlspecialchars($borrower['contact'])?></span>
+                <?php endif; ?>
+              </div>
+            <?php endif; ?>
           </div>
-          <div class="col-md-2 d-flex align-items-end">
-            <button class="btn btn-primary" type="submit">Lookup</button>
+          <div class="ms-md-auto">
+            <a class="btn btn-outline-secondary" href="<?=ROOT_BASE?>/index.php">Back to Home</a>
           </div>
-          <div class="col-md-6 d-flex align-items-end">
-            <a class="btn btn-outline-secondary ms-md-2" href="<?=ROOT_BASE?>/index.php">Back to Home</a>
-          </div>
-        </form>
+        </div>
 
         <?php if ($message): ?>
           <div class="alert alert-warning" role="alert"><?=$message?></div>
         <?php endif; ?>
 
         <?php if ($borrower): ?>
-          <div class="mb-3">
-            <div><strong>Name:</strong> <?=htmlspecialchars($borrower['name'])?></div>
-            <div><strong>Borrower ID:</strong> <?=htmlspecialchars($borrower['borrower_id'])?></div>
-            <?php if (!empty($borrower['contact'])): ?>
-              <div><strong>Contact:</strong> <?=htmlspecialchars($borrower['contact'])?></div>
-            <?php endif; ?>
-          </div>
 
           <?php
             $txRows = [];

@@ -33,8 +33,11 @@ const initApp = () => {
   // Toggle Login/Register panels on index page
   const btnShowRegister = document.getElementById('btnShowRegister');
   const btnShowLogin = document.getElementById('btnShowLogin');
+  const btnBorrowerBackToLogin = document.getElementById('btnBorrowerBackToLogin');
+  const btnShowBorrowerLogin = document.getElementById('btnShowBorrowerLogin');
   const loginPanel = document.getElementById('loginPanel');
   const registerPanel = document.getElementById('registerPanel');
+  const borrowerLoginPanel = document.getElementById('borrowerLoginPanel');
   btnShowRegister?.addEventListener('click', () => {
     loginPanel?.classList.add('d-none');
     registerPanel?.classList.remove('d-none');
@@ -42,6 +45,17 @@ const initApp = () => {
   });
   btnShowLogin?.addEventListener('click', () => {
     registerPanel?.classList.add('d-none');
+    loginPanel?.classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  btnShowBorrowerLogin?.addEventListener('click', () => {
+    loginPanel?.classList.add('d-none');
+    registerPanel?.classList.add('d-none');
+    borrowerLoginPanel?.classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  btnBorrowerBackToLogin?.addEventListener('click', () => {
+    borrowerLoginPanel?.classList.add('d-none');
     loginPanel?.classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
