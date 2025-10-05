@@ -10,6 +10,16 @@ $stats = [
   'borrowed' => (int)pdo()->query("SELECT COUNT(*) AS c FROM transactions WHERE status='Borrowed'")->fetch()['c'],
 ];
 
+// Chart data: borrows per month (last 6 months) and status distribution
+$borrowsMonthly = pdo()->query("SELECT DATE_FORMAT(borrow_date,'%Y-%m') AS m, COUNT(*) AS c FROM transactions GROUP BY m ORDER BY m DESC LIMIT 6")->fetchAll();
+$borrowsMonthly = array_reverse($borrowsMonthly);
+$borrowsLabels = array_map(fn($r) => $r['m'], $borrowsMonthly);
+$borrowsCounts = array_map(fn($r) => (int)$r['c'], $borrowsMonthly);
+
+$statusRows = pdo()->query("SELECT status, COUNT(*) AS c FROM transactions GROUP BY status")->fetchAll();
+$statusLabels = array_map(fn($r) => $r['status'], $statusRows);
+$statusCounts = array_map(fn($r) => (int)$r['c'], $statusRows);
+
 include __DIR__ . '/../partials/admin_header.php';
 ?>
 <div class="row g-4">
@@ -51,7 +61,7 @@ include __DIR__ . '/../partials/admin_header.php';
   </div>
 </div>
 
-<div class="row mt-4">
+<!-- <div class="row mt-4">
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
@@ -65,6 +75,72 @@ include __DIR__ . '/../partials/admin_header.php';
       </div>
     </div>
   </div>
+</div> -->
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="page-title mb-2">Number of Books</div>
+        <canvas id="borrowsChart" height="110"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="page-title mb-2">Transaction Status</div>
+        <canvas id="statusChart" height="110"></canvas>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const borrowsLabels = <?=json_encode($borrowsLabels)?>;
+  const borrowsCounts = <?=json_encode($borrowsCounts)?>;
+  const statusLabels = <?=json_encode($statusLabels)?>;
+  const statusCounts = <?=json_encode($statusCounts)?>;
+
+  const brandNavy = getComputedStyle(document.documentElement).getPropertyValue('--navy') || '#0e2a47';
+  const brandGold = getComputedStyle(document.documentElement).getPropertyValue('--gold') || '#c7a64b';
+
+  // Bar chart: borrows per month
+  new Chart(document.getElementById('borrowsChart'), {
+    type: 'bar',
+    data: {
+      labels: borrowsLabels,
+      datasets: [{
+        label: 'Books',
+        data: borrowsCounts,
+        backgroundColor: brandNavy.trim(),
+      }]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
+    }
+  });
+
+  // Doughnut chart: status distribution
+  new Chart(document.getElementById('statusChart'), {
+    type: 'doughnut',
+    data: {
+      labels: statusLabels,
+      datasets: [{
+        data: statusCounts,
+        backgroundColor: [brandGold.trim(), brandNavy.trim()],
+      }]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } }
+    }
+  });
+</script>
 
 <?php include __DIR__ . '/../partials/footer.php'; ?>

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const initApp = () => {
   // Confirm delete actions
   document.querySelectorAll('[data-confirm]')?.forEach(el => {
     el.addEventListener('click', (e) => {
@@ -29,4 +29,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (autoPrint) {
     setTimeout(() => window.print(), 300);
   }
-});
+
+  // Toggle Login/Register panels on index page
+  const btnShowRegister = document.getElementById('btnShowRegister');
+  const btnShowLogin = document.getElementById('btnShowLogin');
+  const loginPanel = document.getElementById('loginPanel');
+  const registerPanel = document.getElementById('registerPanel');
+  btnShowRegister?.addEventListener('click', () => {
+    loginPanel?.classList.add('d-none');
+    registerPanel?.classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  btnShowLogin?.addEventListener('click', () => {
+    registerPanel?.classList.add('d-none');
+    loginPanel?.classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
