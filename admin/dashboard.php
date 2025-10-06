@@ -22,6 +22,7 @@ $statusCounts = array_map(fn($r) => (int)$r['c'], $statusRows);
 
 include __DIR__ . '/../partials/admin_header.php';
 ?>
+
 <div class="row g-4">
   <div class="col-md-3">
     <div class="card">

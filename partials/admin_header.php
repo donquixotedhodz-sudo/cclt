@@ -18,10 +18,11 @@ $currentPage = basename($_SERVER['PHP_SELF'] ?? '');
   </head>
   <body>
     <aside class="sidenav">
-      <div class="brand d-flex align-items-center gap-2 mb-3">
-        <img src="<?=defined('ROOT_BASE')?ROOT_BASE:(defined('ASSET_BASE')?ASSET_BASE:APP_BASE)?>/image/ccclogo.png" alt="Clarendon College logo" width="36" height="36">
-        <div class="fw-semibold">Clarendon College</div>
-      </div>
+      <div class="brand d-flex flex-column align-items-center gap-10 mb-4">
+    <img src="<?=defined('ROOT_BASE')?ROOT_BASE:(defined('ASSET_BASE')?ASSET_BASE:APP_BASE)?>/image/ccclogo.png" alt="Clarendon College logo" width="40" height="">
+    <div class="fw-semibold">Clarendon College</div>
+    <div class="fw-semibold">Library Tracker</div>
+</div>
       <ul class="nav flex-column">
         <?php if ($loggedIn): ?>
           <li class="nav-item"><a class="nav-link <?= $currentPage==='dashboard.php'?'active':'' ?>" <?= $currentPage==='dashboard.php'?'aria-current="page"':'' ?> href="<?=APP_BASE?>/dashboard.php"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>

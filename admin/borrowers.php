@@ -102,9 +102,9 @@ $rows = pdo()->query("SELECT * FROM borrowers ORDER BY created_at DESC, name ASC
   <div class="col-md-6">
     <input type="text" class="form-control" placeholder="Search in table..." data-table-filter="#borrowersTable">
   </div>
-  <div class="col-md-6 text-end">
+  <!-- <div class="col-md-6 text-end">
     <a class="btn btn-outline-secondary" href="<?=APP_BASE?>/transactions.php?action=borrow">Borrow a Book</a>
-  </div>
+  </div> -->
 </div>
 <div class="card">
   <div class="card-body">
