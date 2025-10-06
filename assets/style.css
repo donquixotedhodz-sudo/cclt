@@ -183,3 +183,13 @@ body {
 .input-with-toggle input.form-control {
   padding-right: 2.5rem; /* ensure text doesn’t overlap icon */
 }
+
+/* Logout hover: make only Logout item red on hover */
+.sidenav .nav-item.mt-auto .nav-link:hover {
+  background: rgba(220, 53, 69, 0.15);
+  color: #dc3545 !important;
+}
+.theme-dark .sidenav .nav-item.mt-auto .nav-link:hover {
+  background: rgba(220, 53, 69, 0.25);
+  color: #dc3545 !important;
+}

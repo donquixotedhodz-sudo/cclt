@@ -93,7 +93,7 @@ if ($action === 'new' || $action === 'edit') {
       </div>
     </div>
     <?php
-    include __DIR__ . '/partials/footer.php';
+    include __DIR__ . '/../partials/footer.php';
     exit;
 }
 

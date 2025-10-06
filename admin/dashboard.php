@@ -91,6 +91,7 @@ include __DIR__ . '/../partials/admin_header.php';
       <div class="card-body">
         <div class="page-title mb-2">Transaction Status</div>
         <div class="chart-container"><canvas id="statusChart"></canvas></div>
+        
       </div>
     </div>
   </div>
@@ -128,13 +129,15 @@ include __DIR__ . '/../partials/admin_header.php';
   });
 
   // Doughnut chart: status distribution
+  const basePalette = [brandGold.trim(), brandNavy.trim(), '#6c757d', '#198754', '#dc3545', '#0d6efd', '#fd7e14', '#20c997'];
+  const statusColors = statusLabels.map((_, i) => basePalette[i % basePalette.length]);
   new Chart(document.getElementById('statusChart'), {
     type: 'doughnut',
     data: {
       labels: statusLabels,
       datasets: [{
         data: statusCounts,
-        backgroundColor: [brandGold.trim(), brandNavy.trim()],
+        backgroundColor: statusColors,
       }]
     },
     options: {
@@ -145,6 +148,13 @@ include __DIR__ . '/../partials/admin_header.php';
       plugins: { legend: { display: false } }
     }
   });
+  const statusLegendEl = document.getElementById('statusLegend');
+  if (statusLegendEl) {
+    statusLegendEl.innerHTML = statusLabels.map((label, i) => {
+      const count = statusCounts[i] !== undefined ? statusCounts[i] : 0;
+      return `<span class="legend-item"><span class="legend-dot" style="background:${statusColors[i]}"></span>${label} (${count})</span>`;
+    }).join('');
+  }
 </script>
 
 <?php include __DIR__ . '/../partials/footer.php'; ?>
