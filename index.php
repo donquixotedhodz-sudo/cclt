@@ -90,7 +90,7 @@ include __DIR__ . '/partials/header.php';
   <div id="loginPanel" class="col-md-5<?= $showRegister ? ' d-none' : '' ?>">
     <div class="card">
       <div class="card-body">
-        <div class="page-title mb-3">Login</div>
+        <div class="page-title mb-3">Admin Login</div>
         <?php if ($login_error): ?>
           <div class="alert alert-danger" role="alert"><?=$login_error?></div>
         <?php endif; ?>

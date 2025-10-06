@@ -157,6 +157,65 @@ body {
   }
 }
 
+/* Desktop: Center main content and prevent overlay on sidebar */
+@media (min-width: 992px) {
+  .content-with-sidenav {
+    margin-left: 240px; /* matches .sidenav width */
+    max-width: calc(100vw - 240px);
+    padding: 2rem 2.5rem;
+  }
+  .col-md-10 {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Card padding for desktop */
+@media (min-width: 768px) {
+  .card-body {
+    padding: 2rem 2.5rem;
+  }
+}
+
+/* Responsive table: horizontal scroll on overflow */
+.table-responsive {
+  overflow-x: auto;
+  min-width: 100%;
+  padding-bottom: 1rem;
+}
+
+/* Table cell padding and font size for desktop */
+@media (min-width: 992px) {
+  .table th,
+  .table td {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+}
+
+/* Dashboard summary badges spacing */
+.dashboard-summary .badge {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  padding: 0.6em 1.2em;
+}
+
+/* Ensure cards and tables have enough margin */
+.card {
+  margin-bottom: 2rem;
+}
+
+/* Prevent content from touching the edges */
+@media (min-width: 992px) {
+  body {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 /* Chart wrappers to stabilize responsive sizing */
 .chart-container {
   position: relative;
